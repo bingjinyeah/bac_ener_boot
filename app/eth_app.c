@@ -38,6 +38,9 @@ void process_pc_msg(SOCKET s)
 	uint8_t  *p;
 
 	size = Read_SOCK_Data_Buffer(s, eth_rxd_buff);
+	if(size==0) {
+		return;
+	}
 	if(S0_Mode==UDP_MODE){
 		UDP_DIPR[0] = eth_rxd_buff[0];
 		UDP_DIPR[1] = eth_rxd_buff[1];
@@ -125,6 +128,7 @@ void eth_app_task(void )
 	{
 		W5500_Interrupt_Process();//W5500中断处理程序框架
 	}
+	
 	if((S0_Data & S_RECEIVE) == S_RECEIVE)
 	{
 		S0_Data&=~S_RECEIVE;

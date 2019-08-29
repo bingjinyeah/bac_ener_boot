@@ -50,6 +50,7 @@ int main(void)
 				LED_WIFI_BLINK;
 				LED_COM1_BLINK;
 				LED_COM2_BLINK;
+				OSTime ++;
 			}
 			eth_app_task();
 		}
@@ -61,8 +62,6 @@ int main(void)
 			NVIC_SystemReset();
 		}
 	}
-	
-    
 }
 
 

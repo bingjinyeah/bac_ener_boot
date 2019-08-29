@@ -183,7 +183,7 @@ void W5500_Socket_Set(void)
 	}
 }
 
-
+uint32_t lcount = 0;
 void EXTI9_5_IRQHandler(void)
 {
 	if(EXTI_GetITStatus(EXTI_Line9) != RESET)
@@ -191,6 +191,7 @@ void EXTI9_5_IRQHandler(void)
 		
 		EXTI_ClearITPendingBit(EXTI_Line9);
 		W5500_Interrupt = 1;
+		lcount++;
 	}
 }
 
@@ -925,8 +926,8 @@ IntDispose:
 		}
 	}
 
-	if(Read_W5500_1Byte(SIR) != 0) 
-		goto IntDispose;
+	//if(Read_W5500_1Byte(SIR) != 0) 
+	//	goto IntDispose;
 }
 
 
